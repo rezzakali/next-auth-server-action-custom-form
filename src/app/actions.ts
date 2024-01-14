@@ -1,10 +1,9 @@
 'use server';
 
+import { signIn } from '@/auth';
 import dbConnect from '@/dbConfig/dbConfig';
 import User from '@/models/userModel';
 import bcrypt from 'bcrypt';
-import NextAuth from 'next-auth';
-import GitHub from 'next-auth/providers/github';
 
 type Inputs = {
   email: string;
@@ -62,17 +61,6 @@ type InputsSignup = {
 //   }
 // }
 
-// signin (NEXT-AUTH)
-
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [
-    GitHub({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
-  ],
-});
-
 export async function signin(previousState: any, formData: Inputs) {
   const { email, password } = formData || {};
 }
@@ -122,3 +110,8 @@ export async function signup(previousState: any, formData: InputsSignup) {
     return { status: false, message: error.message };
   }
 }
+
+export const handleGithubLogin = async () => {
+  'use server';
+  await signIn('github');
+};

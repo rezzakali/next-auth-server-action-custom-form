@@ -1,14 +1,10 @@
-import { signIn } from '@/app/actions';
+'use client';
+
+import { handleGithubLogin } from '@/app/actions';
 
 const SignInWithGitHub = () => {
-  const handleSignInWithGithub = async () => {
-    await signIn('github');
-  };
-
   return (
-    <form action={handleSignInWithGithub}>
-      <button>Sign in with GitHub</button>
-    </form>
+    <button onClick={() => handleGithubLogin()}>Sign in with GitHub</button>
   );
 };
 

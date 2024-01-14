@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import SignInWithGitHub from './SignInWithGitHub';
 
 type Inputs = {
   email: string;
